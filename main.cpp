@@ -1,11 +1,10 @@
 #include <QApplication>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include <QGraphicsRectItem>
 #include <QDebug>
 
 #include "Box.h"
-#include "Mario.h"
+#include "Utils.h"
 #include <iostream>
 
 
@@ -14,20 +13,16 @@ int main(int argc, char *argv[]) {
 
     QGraphicsScene *scene = new QGraphicsScene();
 
+    bool map = Utils::readMap("../map.txt", scene);
+    if (!map) {
+        return -1;
+    }
+
     // Add box
-    Box * box = new Box(); // Nous utilisons notre nouvelle classe Box
+/*    Box * box = new Box(); // Nous utilisons notre nouvelle classe Box
     box->setRect(100, -100, 100, 100);
 
-    // Nous devons faire en sorte que Box reçoive les événements clavier
-    box->setFlag(QGraphicsItem::ItemIsFocusable);
-    box->setFocus();
-
-    scene->addItem(box);
-
-    // Add Mario
-    Mario *mario = new Mario(scene->width() /2, scene->height() /2);
-    scene->addItem(mario);
-
+    scene->addItem(box);*/
 
     // Visualize the scene
     QGraphicsView *view = new QGraphicsView(scene);
@@ -38,5 +33,9 @@ int main(int argc, char *argv[]) {
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->show();
 
-    return application.exec();
+    int exec = application.exec();
+
+    delete scene;
+
+    return exec;
 }

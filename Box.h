@@ -13,11 +13,13 @@
 #include <QApplication>
 #include <QGraphicsPixmapItem>
 #include <QPixmap>
+#include "GameObject.h"
 
-class Box : public QGraphicsRectItem {
+class Box : public GameObject {
+private:
 
 public:
-
+    Box(double scene_height, double scene_width);
 };
 
 

@@ -2,7 +2,10 @@
 // Created by robin on 17/07/23.
 //
 
+#include <QGraphicsScene>
 #include "Utils.h"
+#include "Mario.h"
+#include "Box.h"
 
 bool Utils::isValidPath(std::string fileName) {
     std::filesystem::path path = std::filesystem::current_path();
@@ -18,6 +21,37 @@ bool Utils::isValidPath(std::string fileName) {
         return true;
     } else {
         std::cout << "Failed to open " << imagePath << std::endl;
+        return false;
+    }
+}
+
+bool Utils::readMap(std::string fileName, QGraphicsScene *scene) {
+    std::ifstream mapFile(fileName);
+
+    if (mapFile.is_open()) {
+        char tile;
+        while (mapFile.get(tile)) {
+            if (tile == '\n') {
+                std::cout << std::endl;
+            } else {
+                if (tile == 'P') {
+                    // Add Mario
+                    Mario *mario = new Mario(scene->width() /2, scene->height() /2);
+                    scene->addItem(mario);
+                } else if (tile == '#') {
+                    Box * box = new Box(scene->width() /2, scene->height() /2);
+                    scene->addItem(box);
+
+                    scene->addItem(box);
+                } else {
+                    std::cout << tile;
+                }
+            }
+        }
+        mapFile.close();
+        return true;
+    } else {
+        std::cout << "Unable to open map file";
         return false;
     }
 }

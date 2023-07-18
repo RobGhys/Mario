@@ -13,7 +13,7 @@ find_package(Qt5 COMPONENTS
         Widgets
         REQUIRED)
 
-add_executable(mario main.cpp Utils.cpp Utils.h Mario.cpp Mario.h Direction.h)
+add_executable(mario main.cpp Utils.cpp Utils.h Mario.cpp Mario.h Box.h Box.cpp Direction.h GameObject.cpp GameObject.h Box.cpp)
 target_link_libraries(mario
         Qt5::Core
         Qt5::Gui

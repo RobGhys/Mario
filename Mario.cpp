@@ -9,7 +9,6 @@
 Mario::Mario(double scene_height, double scene_width) :  QGraphicsPixmapItem() {
 
     // Link sprites
-    //QPixmap sheet("../resources/Tilesheet/sokoban_tilesheet.png");
     this->setSheet(QPixmap("../resources/Tilesheet/sokoban_tilesheet.png"));
     if (this->sheet.isNull()) {
         qDebug() << "Did not find image";

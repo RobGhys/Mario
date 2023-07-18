@@ -10,8 +10,12 @@
 #include <iostream>
 
 class Utils {
+private:
 
+public:
     bool isValidPath(std::string fileName);
+
+    static bool readMap(std::string fileName, QGraphicsScene *scene);
 };
 
 
