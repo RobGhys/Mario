@@ -10,32 +10,18 @@
 #include <QDebug>
 #include <QGraphicsPixmapItem>
 #include "Direction.h"
+#include "GameObject.h"
 
-class Mario : public QGraphicsPixmapItem {
+class Mario : public GameObject {
+private:
+    Direction prevDirection;
+
 public:
     Mario(double scene_height, double scene_width);
 
-    int getTileWidth() const;
-    int getTileHeight() const;
     void keyPressEvent(QKeyEvent *event) override;
-
-    const QPixmap &getSheet() const;
-
-    void setSheet(const QPixmap &sheet);
-
     Direction getPrevDirection() const;
-
     void setPrevDirection(Direction prevDirection);
-
-private:
-    QPixmap sheet;
-    int tileWidth{};
-    int tileHeight{};
-    Direction prevDirection;
-
-    void setTileWidth(int tileWidth, QPixmap sheet);
-
-    void setTileHeight(int tileHeight, QPixmap sheet);
 };
 
 
